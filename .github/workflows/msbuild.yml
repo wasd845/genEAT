@@ -43,7 +43,7 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
 
-    # 创建 Release
+     # 创建 Release
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -56,13 +56,9 @@ jobs:
         draft: false
         prerelease: false
 
-    # 上传可执行文件到 Release
-    - name: Upload executable to release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # 上传编译结果到 Release
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ github.workspace }}/x64/Release/genEAT.exe
-        asset_name: genEAT.exe
-        asset_content_type: application/octet-stream
+        name: ReleaseFiles
+        path: ${{ github.workspace }}/x64/Release/genEAT.exe  # 替换为编译结果的路径
