@@ -11,10 +11,7 @@ env:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -29,16 +26,8 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: cmake --build . --config ${{env.BUILD_TYPE}}
 
-    - name: Upload Windows Artifacts
-      if: matrix.os == 'windows-latest'
-      uses: actions/upload-artifact@v3
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
       with:
         name: genEAT-windows
         path: ${{github.workspace}}/build/Release/genEAT.exe
-
-    - name: Upload Linux Artifacts
-      if: matrix.os == 'ubuntu-latest'
-      uses: actions/upload-artifact@v3
-      with:
-        name: genEAT-linux
-        path: ${{github.workspace}}/build/genEAT

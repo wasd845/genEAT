@@ -97,16 +97,37 @@ void GenerateEAT(char* FileName, char* OldDllName)
 	_fcloseall();
 }
 
+void PrintHelp()
+{
+    printf("GenEAT - Generate Export Address Table Tool\n");
+    printf("Usage: genEAT.exe -d <dll_path> -c <output_cpp_path> -n <old_dll_name>\n\n");
+    printf("Options:\n");
+    printf("  -h, --help     Show this help message\n");
+    printf("  -d <dll_path>  Path to the input DLL file\n");
+    printf("  -c <cpp_path>  Path to output the generated C++ file\n");
+    printf("  -n <dll_name>  Original DLL name for export\n\n");
+    printf("Example:\n");
+    printf("  genEAT.exe -d mydll.dll -c output.cpp -n original.dll\n");
+}
 
 int main(int argc, char* argv[])
 {
-	if (argc == 7)
-	{
-		if (!strcmp(argv[1], "-d") && !strcmp(argv[3], "-c") && !strcmp(argv[5], "-n"))
-		{
-			OpenPeFile(argv[2]);
-			GenerateEAT(argv[4], argv[6]);
-		}
-	}
-	return 0;
+    if (argc == 2 && (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help")))
+    {
+        PrintHelp();
+        return 0;
+    }
+
+    if (argc == 7)
+    {
+        if (!strcmp(argv[1], "-d") && !strcmp(argv[3], "-c") && !strcmp(argv[5], "-n"))
+        {
+            OpenPeFile(argv[2]);
+            GenerateEAT(argv[4], argv[6]);
+            return 0;
+        }
+    }
+
+    PrintHelp();
+    return 1;
 }
