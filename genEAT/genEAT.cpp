@@ -65,7 +65,7 @@ void GenerateEAT(char* FileName, char* OldDllName)
 	FILE* fp = fopen(FileName, "a+");
 	char buf[8192] = { 0 };
 
-	sprintf(buf, "// PowerBy:LyShark\n#include <stdio.h>\n#include <windows.h>\n\n");
+	sprintf(buf, "// PowerBy:GenEAT\n#include <stdio.h>\n#include <windows.h>\n\n");
 	fwrite(buf, strlen(buf), 1, fp);
 
 	for (DWORD i = 0; i < FunctionCount; ++i)
