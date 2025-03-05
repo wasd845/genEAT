@@ -1,0 +1,40 @@
+name: Release Build
+
+on:
+  release:
+    types: [created]
+
+env:
+  SOLUTION_FILE_PATH: .
+  BUILD_CONFIGURATION: Release
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config Release
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./build/Release/genEAT.exe
+        asset_name: genEAT.exe
+        asset_content_type: application/octet-stream
