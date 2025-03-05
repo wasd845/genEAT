@@ -19,12 +19,12 @@ void OpenPeFile(LPCSTR FileName)
 	if (!bRet)
 		exit(0);
 
-	// 获取DOS头并判断是不是一个有效的DOS文件
+	// Get DOS header and check if it's a valid DOS file
 	DosHeader = (PIMAGE_DOS_HEADER)FileBase;
 	if (DosHeader->e_magic != IMAGE_DOS_SIGNATURE)
 		exit(0);
 
-	// 获取 NT 头并判断是不是一个有效的PE文件
+	// Get NT header and check if it's a valid PE file
 	NtHeader = (PIMAGE_NT_HEADERS)(FileBase + DosHeader->e_lfanew);
 	if (NtHeader->Signature != IMAGE_NT_SIGNATURE)
 		exit(0);

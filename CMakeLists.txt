@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Add executable
 add_executable(genEAT
-    genEAT/genEAT.cpp
+    src/genEAT.cpp
 )
 
 # Windows specific settings
