@@ -4,6 +4,9 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: write
+
 env:
   SOLUTION_FILE_PATH: .
   BUILD_CONFIGURATION: Release
