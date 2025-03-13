@@ -1,5 +1,7 @@
 ### GenEAT 🛠️
 
+[中文文档](README_CN.md)
+
 GenEAT is a powerful tool designed to streamline the process of generating export table hijacking DLLs. By simply providing the name of a DLL file along with the original function name prefix or the name after hijacking, GenEAT automatically generates a compilable DLL source code. Users only need to compile the generated source code to obtain an export table hijacking DLL.
 
 #### Platform Support
@@ -55,4 +57,4 @@ Contributions to GenEAT are welcome! Feel free to submit issues, feature request
 
 #### License
 
-This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
