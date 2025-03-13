@@ -57,4 +57,4 @@ Contributions to GenEAT are welcome! Feel free to submit issues, feature request
 
 #### License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the GPLv3 License - see the LICENSE file for details.
